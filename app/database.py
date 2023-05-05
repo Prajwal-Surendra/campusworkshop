@@ -83,7 +83,13 @@ def fetch_max_id() -> int:
     except:
         print("Failed")
 
-    
+def update_status_entry(task_id: int , text: str):
+    cursor = postgres.cursor()
+    query = "Update tasks set task = '{}' where id = {};".format(text,task_id)
+    cursor.execute(query)
+    postgres.commit()
+    cursor.close()
+
 
 
 # #Creating a connection cursor
